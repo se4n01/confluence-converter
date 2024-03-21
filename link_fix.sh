@@ -33,7 +33,7 @@ find "$BASE_DIR" -type f -name '*.md' | while read -r file; do
         if [[ $internal_filename != "index.html"  ]]; then
           sed -i "s|$internal_filename|$new_link|g" "$target_file"
         else
-          sed -i "s|index.html|home|g" "$target_file"
+          sed -i "s|index.html|/home|g" "$target_file"
         fi
     done
 done
