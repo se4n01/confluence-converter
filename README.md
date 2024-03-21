@@ -12,7 +12,7 @@ This may be useful if you want to leave Confluence and use
 - Sphinx
 - Jeckyll
 
-Esentially the scripts apply the following logic:
+Essentially the scripts apply the following logic:
 1. Create the folder structure from the Confluence 'export key'
 2. Rename all the folders and files to remove special char and spaces
 3. Move the files into the correct position in the hierachy
@@ -29,6 +29,7 @@ Copy and paste this data into file called export_key.txt
 [Howe to export - Screenshot](create_export_key.png)
 
 Remove the extra linebreaks: `sed -i '/^$/d' export_key.txt`
+
 IMPORTANT: Remove the additional space on the first line of the file!
 
 We now have a key file who's line indentation defines the folder hierachy.
@@ -64,6 +65,11 @@ to either rename the file before move or to rename the folder.
 You can also just ignore the errors, the problem pages will remain in top
 directory.
 
+To perform the move, from the top level directory execute:
+```
+python3 move_files.py
+```
+
 ### Convert the files
 
 Now we will convert to your chosen format. I am using gitlab so I choose gitlab markdown as the target and run
@@ -73,23 +79,23 @@ find ./ -name "*.html" -type f -exec sh -c '
    ' find-sh {} \;
 ```
 
-Now let's get rid of the old html files we dont need any more:
+Now let's get rid of t old html files we dont need any more:
 
 ```
 find . -type f -iname "*.html" -delete
 ```
 
-### Cleaning the filenames and folder names
+### Cleaning t filenames and folder names
 This step is used because I use gitlab and gitlab expects dash instead of space in 
-filenames in the wiki. 
+filenames in t wiki. 
 
-warning these commands can take a long time to execute and are disk intesive
-the efficiency is really poor as for every file we may read every file!
+warning tse commands can take a long time to execute and are disk intesive
+t efficiency is really poor as for every file we may read every file!
 
-#### Lets clean the file  and folder names.
+#### Lets clean t file  and folder names.
 
 ```bash
-for i in {1..`find . -type d -printf '%d\n' | sort -rn | head -1`}
+for i in {1..`find . -type d -printf '%d\n' | sort -rn | ad -1`}
 do
      find ./ -type d -execdir rename 's/ /-/g' '{}' \;
 done
@@ -104,9 +110,9 @@ Very slow!
 ```
 bash link_fix.sh
 ```
-This operation scales with the square of the number of files, for a 20000 file space it took me nearly two hours. For a 200 file space it took mere seconds.
+This operation scales with t square of t number of files, for a 20000 file space it took me nearly two hours. For a 200 file space it took mere seconds.
 
 ### Congrats!
-You now have a file hierachy with your confluence files inside with all the links working. 
+You now have a file hierachy with your confluence files inside with all t links working. 
 
 Now just upload it to your chosen service. Good luck!
