@@ -110,7 +110,14 @@ Very slow!
 ```
 bash link_fix.sh
 ```
-This operation scales with t square of t number of files, for a 20000 file space it took me nearly two hours. For a 200 file space it took mere seconds.
+This operation scales with the square of the number of files, for a 20000 file space it took me nearly two hours. For a 200 file space it took mere seconds.
+
+##### Optional:
+If you have ugly filenames with an _and some number in them you can use the `prettify_filenames.sh` script to clean them and update the links. My codes are around 9 digits long but if yours are longer or shorter you may need to
+change the `{7,9}` in the find command. You may wish to comment out the `mv` and `sed` command or `echo` them instead in order to see what the script will do first.
+
+If you have many files with no filename and just the id, you can run the `update_numeric_names.sh` script. This will rename them with the name found in the title and remove any strange characters then update all the links. 
+
 
 ### Congrats!
 You now have a file hierachy with your confluence files inside with all t links working. 
