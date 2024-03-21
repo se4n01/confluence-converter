@@ -60,7 +60,4 @@ def apply_structure():
         target_dir_path = os.path.join(base_path, *file_path[:-1])
         target_path = os.path.join(target_dir_path, file_path[-1] + ".html")
 
-        print(f"Would move {filename} to {target_path}")
-        # os.rename(os.path.join(html_files_path, filename), target_path)  # Uncomment for actual move
-
 apply_structure()
