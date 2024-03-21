@@ -24,6 +24,7 @@ find "$BASE_DIR" -type f -name '*.md' | while read -r file; do
 
     # Prepare the new link format
     new_link=$(echo "$file" | sed "s|^$BASE_DIR||;s|\.md$||")
+    new_link="/${new_link}"
 
     # Replace all occurrences of the old link with the new link format in all .md files
     find "$BASE_DIR" -type f -name '*.md' | while read -r target_file; do
